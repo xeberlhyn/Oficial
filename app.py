@@ -136,7 +136,7 @@ def handle_message(event):
     if VinsenT == 'mid':
         x = datetime.datetime.now()
         profile = Xeberlhyn.get_profile(sender)
-        url = profile.picture_url,
+        url = profile.picture_url
         a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(profile.display_name)
         a_ += "\n⌬ {}".format(str(sender))
