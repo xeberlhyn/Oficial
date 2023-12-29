@@ -9,7 +9,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from urllib.parse import urlencode
 from datetime import datetime
 import requests as uReq
-import requests, json, errno, os, sys, random, tempfile, datetime, urllib, pytz
+import requests, json, errno, os, sys, random, tempfile, datetime, urllib
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom, Joined,
@@ -38,7 +38,7 @@ BotMID = chanels.user_id
 Creator = 'u7b53d142b0b84803853f8841e48cba82'
 notes = {}
 msg_dict = {}
-timeNow = datetime.now(pytz.timezone("Asia/Jakarta"))
+tym = datetime.datetime.now()
 vst = {
     "template": True,
 }
@@ -90,7 +90,7 @@ def sendDowbleMessage(to, txt1, txt2):
     return Xeberlhyn.reply_message(to, [TextSendMessage(text=txt1), TextSendMessage(text=txt2)])
 
 def sendTextFlexMessage(to, url,text):
-    timeNow = datetime.now(pytz.timezone("Asia/Jakarta"))
+    x = datetime.datetime.now()
     data = {
   "type": "bubble",
   "size": "deca",
@@ -149,7 +149,7 @@ def sendTextFlexMessage(to, url,text):
             "contents": [
               {
                 "type": "span",
-                "text": "Jam {}".format(str(datetime.strftime(timeNow,'%H:%M:%S'))),
+                "text": "Jam {}".format(str(x.strftime("%I:%M:%S %p"))),
                 "size": "8px",
                 "weight": "bold",
                 "color": "#778899cc"
@@ -161,7 +161,7 @@ def sendTextFlexMessage(to, url,text):
             "contents": [
               {
                 "type": "span",
-                "text": "Tanggal {}".format(str(datetime.strftime(timeNow,'%Y-%m-%d'))),
+                "text": "{}".format(str(x.strftime("%A, %d %b %Y"))),
                 "size": "8px",
                 "weight": "bold",
                 "color": "#778899cc"
