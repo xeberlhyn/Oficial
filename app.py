@@ -134,6 +134,8 @@ def handle_message(event):
     to = event.reply_token
     room = event.source.group_id
     if VinsenT == 'mid':
+        tz = pytz.timezone("Asia/Jakarta")
+        y = datetime.datetime.now(tz)
         x = datetime.datetime.now()
         profile = Xeberlhyn.get_profile(sender)
         url = profile.picture_url
@@ -202,7 +204,7 @@ def handle_message(event):
                 "contents": [
                   {
                     "type": "span",
-                    "text": "Jam {}".format(str(x.strftime("%I:%M:%S %p"))),
+                    "text": "Jam {}".format(str(y.strftime("%I:%M:%S %p"))),
                     "size": "8px",
                     "weight": "bold",
                     "color": "#778899cc"
