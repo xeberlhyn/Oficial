@@ -284,8 +284,7 @@ def handle_message(event):
     ],
     "paddingAll": "3px"
   }
-        if vst["template"] == True: Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
-        else: sendMessage(to, str(a_))
+        Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
