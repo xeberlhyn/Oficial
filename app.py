@@ -156,14 +156,14 @@ def handle_message(event):
         with ydl:
             result = ydl.extract_info(link)
             try:
-            	if 'entries' in result:
-            	    video = result['entries'][0]
+                if 'entries' in result:
+                    video = result['entries'][0]
                 else:
-            	    video = result
+                    video = result
                 url = "{}".format(video['url'])
                 sendFlexVideoURL(to, url)
             except Exception as e:
-            	sendMessage(to, "error")
+                sendMessage(to, "error")
 
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
