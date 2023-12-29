@@ -29,12 +29,15 @@ from linebot.models import (
 )
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1, x_proto=1)
-line_bot_api = LineBotApi('2Qch8cY6wIMUpoDKqxoe7vhUjCKTX07Ccn+Vn5hk8A1SqMu7TcvY0ablo0DDuEnaoASRcMTNFQu3buoi7MGmrbwRFEKJdzQPHgu/i1QhxqDuJy/MaCSK0sSKqnxEUOsrb5PFZPzw0FhCweL/vmfb0QdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('6784e25383ee39debbddd38dbcd7ab1f')
+
+
+line_bot_api = LineBotApi('9JbP+PRmPFu1AU5s2cMeUCRiD0H/WTg+1G6N0iqQtmwbyqo8t44wTKJIhfr2DOqEzfzrQ1UpI2tIG0NnV3AWbiL/o1mDV0w6vCHb2tSv8XkASczwcYa6vM46Dr1aBrOIYyCmxQEgJHfRR35g3PHBbwdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('c1a32bb792d33105b21b0e4ffeea680f')
+
 Xeberlhyn = line_bot_api
 chanels = Xeberlhyn.get_bot_info()
 BotMID = chanels.user_id
-Creator = 'Uf67f4c0520fc5e102c30fa4012237a62'
+Creator = 'u7b53d142b0b84803853f8841e48cba82'
 notes = {}
 msg_dict = {}
 game = []
