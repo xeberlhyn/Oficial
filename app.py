@@ -152,7 +152,8 @@ def handle_message(event):
         sep = tks.split(" ")
         query = tks.replace(sep[0]+" ","")
         link = requests.get("https://lust.scathach.id/pornhub/search?key={}".format(str(query)))
-        a = json.loads(link)
+       satuan = link.tks
+        a = json.loads(satuan)
         profile = Xeberlhyn.get_profile(sender)
         url = profile.picture_url
         if a["data"] != []:
