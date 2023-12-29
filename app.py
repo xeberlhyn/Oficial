@@ -289,7 +289,7 @@ def handle_message(event):
             a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(profile.display_name)
             a_ += "\n⌬ {}".format(str(sender))
             a_ += "\n\n𝐕 𝐓 ΞΛ𝐌 • 𝐒𝐘𝐒𝐓𝐄𝐌"
-            if vst["template"] == True: sendTextFlexMessage(to, str(a_), url)
+            if vst["template"] == True: sendTextFlexMessage(to, url, str(a_))
             else: sendMessage(to, str(a_))
     except Exception as error:
         sendMessage(to, error)
