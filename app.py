@@ -253,10 +253,6 @@ def handle_message(event):
                     "size": "10px",
                     "weight": "bold",
                     "decoration": "underline",
-                    "action": {
-                      "type": "uri",
-                      "uri": "line.me/ti/p/~xeberlhyn23"
-                    },
                     "color": "#0000FFCC"
                   }
                 ],
