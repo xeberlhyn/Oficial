@@ -150,7 +150,7 @@ def handle_message(event):
     elif VinsenT.startswith("pornhub"):
         sep = tks.split(" ")
         query = tks.replace(sep[0]+" ","")
-        link = requests.get("https://lust.scathach.id/pornhub/search?key={}".format(str(query))
+        link = requests.get("https://lust.scathach.id/pornhub/search?key={}".format(str(query)))
         data = r.tks
         a = json.loads(data)
         if a["data"] != []:
