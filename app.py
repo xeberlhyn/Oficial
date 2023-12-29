@@ -29,8 +29,8 @@ from linebot.models import (
 )
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1, x_proto=1)
-line_bot_api = LineBotApi('9JbP+PRmPFu1AU5s2cMeUCRiD0H/WTg+1G6N0iqQtmwbyqo8t44wTKJIhfr2DOqEzfzrQ1UpI2tIG0NnV3AWbiL/o1mDV0w6vCHb2tSv8XkASczwcYa6vM46Dr1aBrOIYyCmxQEgJHfRR35g3PHBbwdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('c1a32bb792d33105b21b0e4ffeea680f')
+line_bot_api = LineBotApi('ks/r5d+zVhMhzF3NhX2Ru1pkagDJVZtEgD1twVOIrFeCvkaQFYHFTy4yYTP2l7zzRa8p8WnyXsCnzegpcd/WC3Dv11LeLprRTdA/HnESJHHK2bKgPQQFwrmWX3Wr+lArkAJNnPJDO/980tDuMo7H2wdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('89c44971d85f42f346c60755f3ec7fad')
 Xeberlhyn = line_bot_api
 chanels = Xeberlhyn.get_bot_info()
 BotMID = chanels.user_id
