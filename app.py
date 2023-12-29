@@ -37,31 +37,6 @@ BotMID = chanels.user_id
 Creator = 'u7b53d142b0b84803853f8841e48cba82'
 notes = {}
 msg_dict = {}
-game = []
-quest = []
-try:
-	with open("datagame.json", "r", encoding="utf_8_sig") as fp:
-		datagame = json.loads(fp.read())
-except:pass
-with open("quest.txt", "r") as file:
-	blist = file.readlines()
-	quest = [x.strip() for x in blist]
-file.close()
-def getQuest(room):
-	try:
-			datagame[room]['quest'] = ''
-			datagame[room]['asw'] = []
-			datagame[room]['tmp'] = []
-			a = random.choice(quest)
-			a = a.split('*')
-			datagame[room]['quest'] = a[0]
-			for i in range(len(a)):
-				datagame[room]['asw'] += [a[i]]
-			datagame[room]['asw'].remove(a[0])
-			for j in range(len(datagame[room]['asw'])):
-				datagame[room]['tmp'] += [str(j+1)+'. ____________']
-	except Exception as e:
-		print(e)
 
 #____________dev__________________
 def sendMessage(to, teks):
@@ -156,41 +131,7 @@ def handle_message(event):
     msg_id = event.message.id
     to = event.reply_token
     room = event.source.group_id
-    try:
-        for i in range(len(datagame[room]['asw'])):
-            if VinsenT == datagame[room]['asw'][i].lower() and sender not in BotMID and datagame[room]['saklar'] == True:
-                    wnr = Xeberlhyn.get_profile(sender).display_name
-                    if wnr in datagame[room]['point']:
-                        datagame[room]['point'][wnr] += 1
-                    else:
-                        datagame[room]['point'][wnr] = 1
-                    if i != len(datagame[room]['asw']):
-                        datagame[room]['tmp'][i] = str(i+1)+'. '+datagame[room]['asw'][i]+' (1)'+' ['+wnr+']'
-                        datagame[room]['asw'][i] = datagame[room]['asw'][i]+' (*)'
-                    else:
-                        datagame[room]['tmp'].remove(str(datagame[room]['tmp'][i]))
-                        datagame[room]['tmp'].append(str(i+1)+'. '+datagame[room]['asw'][i]+' (1)'+' ['+wnr+']')
-                        datagame[room]['asw'].remove(str(datagame[room]['asw'][i]))
-                        datagame[room]['tmp'].append(datagame[room]['asw'][i]+' (*)')
-                    rsl,rnk = '\n','\n'
-                    for j in datagame[room]['tmp']:
-                        rsl += j+'\n'
-                    for k in datagame[room]['point']:
-                        rnk += '• '+k+' : '+str(datagame[room]['point'][k])+'\n'
-                    if '____________' in str(datagame[room]['tmp']):
-                        isi = str(datagame[room]['quest'])
-                        isi += '\n'+rsl
-                        sendMessage(to, str(isi))
-                    else:
-                        datagame[room]['saklar'] = False
-                        isi2 = str(datagame[room]['quest'])+'\n'+rsl
-                        sendMessage(to, isi2)
-                        teks = '⌬ Papan Skor:\n\n'+rnk
-                        teks += "⌬ Ketik 'Mulai' Untuk Memulai\n⌬ Pertanyaan Baru."
-                        sendMessage(to, str(teks))
-    except:pass
-
-    if VinsenT == 'mid':
+    if VinsenT == 'tis':
         profile = Xeberlhyn.get_profile(sender)
         c_ = "╭───「 Costumer service」"
         c_ += "\n│⊧≽ Nama : " + profile.display_name
@@ -201,135 +142,6 @@ def handle_message(event):
         c_ += "\n╰───「 By: ©VinsenTEAM 」"
         sendMessage(to, str(c_))
 
-    elif VinsenT == '!my profile':
-        profile = Xeberlhyn.get_profile(sender)
-        url = profile.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama : " + profile.display_name
-        c_ += "\n│⊧≽ Status : " + str(profile.status_message)
-        c_ += "\n│⊧≽ Mid : " + sender
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini data profile mu"
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT == '!group profile':
-        G = Xeberlhyn.get_group_summary(room)
-        url = G.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama group: {}".format(G.group_name)
-        c_ += "\n│⊧≽ Gid: {}".format(G.group_id)
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini info group."
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT == '!bot':
-        ofice = Xeberlhyn.get_bot_info()
-        url = ofice.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama bot: {}".format(ofice.display_name)
-        c_ += "\n│⊧≽ ID bot: {}".format(ofice.basic_id)
-        c_ += "\n│⊧≽ Mode: {}".format(ofice.chat_mode)
-        c_ += "\n│⊧≽ Mid : {}".format(ofice.user_id)
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini info bot."
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT.startswith('.\n'):
-        if sender in Creator:
-            try:
-                sep = tks.split('\n')
-                exc = tks.replace(sep[0] + '\n','')
-                if 'print' in exc:
-                    exc = exc.replace('print(','sendMessage(to,')
-                    exec(exc)
-                else:
-                   exec(exc)
-            except Exception as e:
-                sendMessage(to, str(e))
-#__________Bahan Game______________
-    elif VinsenT == "game on":
-        datagame[room]={'point':{}}
-        datagame[room]['saklar']=False
-        datagame[room]['quest']=''
-        datagame[room]['asw']=[]
-        datagame[room]['tmp']=[]
-        teks = "Kuis diaktifkan"
-        sendMessage(to, teks)
-
-    elif VinsenT == "!mulai" or VinsenT == "/mulai" or VinsenT == "mulai":
-        if datagame[room]['saklar'] == False:
-            datagame[room]['saklar'] = True
-            getQuest(room)
-            aa = '\n'
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-            q = datagame[room]['quest']+'\n'+aa
-            teks = q
-            teks += "\n\n⌬ Ketik 'Nyerah' atau 'Next'\n⌬ Jika tidak bisa jawab"
-            sendMessage(to, str(teks))
-        else:
-            aa = '\n'
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-            q = datagame[room]['quest']+'\n'+aa
-            teks1 = q
-            teks1 += "\n\n⌬ Ketik 'Nyerah' atau 'Next'\n⌬ Jika ga bisa jawab"
-            sendMessage(to, str(teks1))
-
-    elif VinsenT == "nyerah" or VinsenT == "/nyerah" or VinsenT == "!nyerah":
-        if datagame[room]['saklar'] == True:
-            rnk,asd = '',''
-            datagame[room]['saklar'] = False
-            for j in range(len(datagame[room]['tmp'])):
-                if '____________' in datagame[room]['tmp'][j]:
-                    if j != len(datagame[room]['tmp']):
-                        datagame[room]['tmp'][j] = str(j+1)+'. '+datagame[room]['asw'][j]+' (*system)'
-                    else:
-                        datagame[room]['tmp'][j].remove(str(datagame[room]['tmp'][j]))
-                        datagame[room]['tmp'][j].append(str(j+1)+'. '+datagame[room]['asw'][j]+' (*system)')
-            for m in datagame[room]['tmp']:
-                asd += m+'\n'
-            for k in datagame[room]['point']:
-                rnk += '• '+k+' : '+str(datagame[room]['point'][k])+'\n'
-            teks1 = str(datagame[room]['quest'])
-            teks1 += '\n\n'+asd
-            teks2 = "╭─「 ©VinsenTEAM」"
-            teks2 += "\n│• Papan poin score"
-            teks2 += "\n╰────────────"
-            teks2 += "\n{}".format(str(rnk))
-            teks2 += "\n\n⌬ Ketik 'Mulai' untuk memulai game baru"
-            txt1 = '{}'.format(str(teks1))
-            txt2 = '{}'.format(str(teks2))
-            sendDowbleMessage(to, txt1, txt2)
-        else:
-            teks5 = "⌬ Ketik 'Mulai' untuk memulai game baru"
-            sendMessage(to, teks5)
-
-    elif VinsenT == "next" or VinsenT == "/next" or VinsenT == "!next":
-        if datagame[room]['saklar'] == True:
-            getQuest(room)
-            aa = ''
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-                q = datagame[room]['quest']
-                q += '\n\n'+aa
-            sendMessage(to, str(q))
-
-    elif VinsenT == "clear" or VinsenT == "/bersihkan" or VinsenT == "reset game":
-        datagame[room]['point'] = {}
-        datagame[room]['saklar'] = False
-        sendMessage(to, "⌬ Game sukses direset ulang")
-
-#__________Bahan Media______________
-
-
-#__________Bahan Media______________
 
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
