@@ -261,7 +261,7 @@ def handle_message(event):
                 "alignItems": "center",
                 "action": {
                   "type": "uri",
-                  "uri": "https://line.me/ti/p/~xeberlhyn123"
+                  "uri": "https://line.me/ti/p/~xeberlhyn23"
                 }
               },
               {
