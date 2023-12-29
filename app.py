@@ -161,7 +161,7 @@ def handle_message(event):
                 else:
                     video = result
                 url = "{}".format(video['url'])
-                sendFlexVideoURL(to, url)
+                sendVideo(to, url)
             except Exception as e:
                 sendMessage(to, "error")
 
