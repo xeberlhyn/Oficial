@@ -235,7 +235,7 @@ def sendTextFlexMessage(to, url,text):
     "paddingAll": "3px"
   }
 }
-    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data)])
+    return Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
 
 #____________Def programing__________
 @handler.add(MemberJoinedEvent)
