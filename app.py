@@ -136,6 +136,7 @@ def handle_message(event):
     if VinsenT == 'mid':
         x = datetime.datetime.now()
         profile = Xeberlhyn.get_profile(sender)
+        url = profile.picture_url
         a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(profile.display_name)
         a_ += "\n⌬ {}".format(str(sender))
@@ -160,7 +161,7 @@ def handle_message(event):
                 "contents": [
                   {
                     "type": "image",
-                    "url": "https://i.ibb.co/J53SMky/20220308-173553.jpg",
+                    "url": url,
                     "aspectMode": "cover",
                     "size": "full"
                   }
@@ -201,7 +202,7 @@ def handle_message(event):
                 "contents": [
                   {
                     "type": "span",
-                    "text": "Jam {}",
+                    "text": "Jam {}".format(str(x.strftime("%I:%M:%S %p"))),
                     "size": "8px",
                     "weight": "bold",
                     "color": "#778899cc"
@@ -213,7 +214,7 @@ def handle_message(event):
                 "contents": [
                   {
                     "type": "span",
-                    "text": "{}",
+                    "text": "{}".format(str(x.strftime("%A, %d %b %Y"))),
                     "size": "8px",
                     "weight": "bold",
                     "color": "#778899cc"
@@ -231,7 +232,7 @@ def handle_message(event):
                 "type": "text",
                 "text": str(a_),
                 "wrap": True,
-                "size": "8px"
+                "size": "10px"
               }
             ]
           },
