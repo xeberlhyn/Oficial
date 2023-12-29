@@ -7,9 +7,7 @@ from flask import Flask, request, abort, send_from_directory
 from argparse import ArgumentParser
 from werkzeug.middleware.proxy_fix import ProxyFix
 from urllib.parse import urlencode
-from datetime import timedelta, date
 from datetime import datetime
-from time import sleep
 import requests as uReq
 import requests, json, errno, os, sys, random, tempfile, datetime, urllib, pytz
 from linebot.models import (
@@ -40,8 +38,7 @@ BotMID = chanels.user_id
 Creator = 'u7b53d142b0b84803853f8841e48cba82'
 notes = {}
 msg_dict = {}
-tz = pytz.timezone("Asia/Jakarta")
-timeNow = datetime.now(tz=tz)
+timeNow = datetime.now(pytz.timezone("Asia/Jakarta"))
 vst = {
     "template": True,
 }
@@ -93,8 +90,7 @@ def sendDowbleMessage(to, txt1, txt2):
     return Xeberlhyn.reply_message(to, [TextSendMessage(text=txt1), TextSendMessage(text=txt2)])
 
 def sendTextFlexMessage(to, url,text):
-    tz = pytz.timezone("Asia/Jakarta")
-    timeNow = datetime.now(tz=tz)
+    timeNow = datetime.now(pytz.timezone("Asia/Jakarta"))
     data = {
   "type": "bubble",
   "size": "deca",
