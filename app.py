@@ -43,7 +43,7 @@ vst = {
     "template": True,
 }
 
-#____________dev__________________
+#____________dev_________________
 def sendMessage(to, teks):
     return Xeberlhyn.reply_message(to, TextSendMessage(text=teks))
 
