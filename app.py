@@ -7,8 +7,11 @@ from flask import Flask, request, abort, send_from_directory
 from argparse import ArgumentParser
 from werkzeug.middleware.proxy_fix import ProxyFix
 from urllib.parse import urlencode
+from datetime import timedelta, date
+from datetime import datetime
+from time import sleep
 import requests as uReq
-import requests, json, errno, os, sys, random, tempfile, datetime, urllib
+import requests, json, errno, os, sys, random, tempfile, datetime, urllib, pytz
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom, Joined,
@@ -37,31 +40,11 @@ BotMID = chanels.user_id
 Creator = 'u7b53d142b0b84803853f8841e48cba82'
 notes = {}
 msg_dict = {}
-game = []
-quest = []
-try:
-	with open("datagame.json", "r", encoding="utf_8_sig") as fp:
-		datagame = json.loads(fp.read())
-except:pass
-with open("quest.txt", "r") as file:
-	blist = file.readlines()
-	quest = [x.strip() for x in blist]
-file.close()
-def getQuest(room):
-	try:
-			datagame[room]['quest'] = ''
-			datagame[room]['asw'] = []
-			datagame[room]['tmp'] = []
-			a = random.choice(quest)
-			a = a.split('*')
-			datagame[room]['quest'] = a[0]
-			for i in range(len(a)):
-				datagame[room]['asw'] += [a[i]]
-			datagame[room]['asw'].remove(a[0])
-			for j in range(len(datagame[room]['asw'])):
-				datagame[room]['tmp'] += [str(j+1)+'. ____________']
-	except Exception as e:
-		print(e)
+tz = pytz.timezone("Asia/Jakarta")
+timeNow = datetime.now(tz=tz)
+vst = {
+    "template": True,
+}
 
 #____________dev__________________
 def sendMessage(to, teks):
@@ -106,11 +89,157 @@ def sendFlexImageURL(to, data, url):
     app.logger.info("url=" + url)
     return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data), VideoSendMessage(url, url)])
 
-
 def sendDowbleMessage(to, txt1, txt2):
     return Xeberlhyn.reply_message(to, [TextSendMessage(text=txt1), TextSendMessage(text=txt2)])
 
-
+def sendTextFlexMessage(to, url,text):
+    tz = pytz.timezone("Asia/Jakarta")
+    timeNow = datetime.now(tz=tz)
+   data = {
+  "type": "bubble",
+  "size": "deca",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": url,
+                "aspectMode": "cover",
+                "size": "full"
+              }
+            ],
+            "cornerRadius": "100px",
+            "width": "20px",
+            "height": "20px"
+          },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+              {
+                "type": "text",
+                "contents": [],
+                "text": "𝐕𝐓𝐄𝐀𝐌 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | 𝙸 𝚊𝚖 𝚛𝚘𝚋𝚘𝚝 𝚕𝚒𝚗𝚎",
+                "size": "10px",
+                "weight": "bold"
+              }
+            ],
+            "justifyContent": "center",
+            "alignItems": "center"
+          }
+        ],
+        "spacing": "md"
+      },
+      {
+        "type": "separator",
+        "margin": "xs",
+        "color": "#708090"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": "Jam {}".format(str(datetime.strftime(timeNow,'%H:%M:%S'))),
+                "size": "8px",
+                "weight": "bold",
+                "color": "#778899cc"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "contents": [
+              {
+                "type": "span",
+                "text": "Tanggal {}".format(str(datetime.strftime(timeNow,'%Y-%m-%d'))),
+                "size": "8px",
+                "weight": "bold",
+                "color": "#778899cc"
+              }
+            ],
+            "align": "end"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": text,
+            "wrap": True,
+            "size": "8px"
+          }
+        ]
+      },
+      {
+        "type": "separator",
+        "color": "#708090"
+      },
+      {
+        "type": "box",
+        "layout": "horizontal",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "𝐏𝐥𝐞𝐚𝐬𝐞 𝐜𝐥𝐢𝐜𝐤 𝐭𝐨 𝐎𝐰𝐧𝐞𝐫",
+                "size": "10px",
+                "weight": "bold",
+                "decoration": "underline",
+                "action": {
+                  "type": "uri",
+                  "label": "action",
+                  "uri": "line.me/ti/p/~xeberlhyn23"
+                },
+                "color": "#0000FFCC"
+              }
+            ],
+            "justifyContent": "center",
+            "alignItems": "center"
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url,
+                "size": "full",
+                "aspectMode": "cover"
+              }
+            ],
+            "width": "20px",
+            "height": "20px",
+            "borderWidth": "normal",
+            "cornerRadius": "xxl"
+          }
+        ],
+        "margin": "sm"
+      }
+    ],
+    "paddingAll": "3px"
+  }
+}
+    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data)])
 
 #____________Def programing__________
 @handler.add(MemberJoinedEvent)
@@ -157,180 +286,17 @@ def handle_message(event):
     to = event.reply_token
     room = event.source.group_id
     try:
-        for i in range(len(datagame[room]['asw'])):
-            if VinsenT == datagame[room]['asw'][i].lower() and sender not in BotMID and datagame[room]['saklar'] == True:
-                    wnr = Xeberlhyn.get_profile(sender).display_name
-                    if wnr in datagame[room]['point']:
-                        datagame[room]['point'][wnr] += 1
-                    else:
-                        datagame[room]['point'][wnr] = 1
-                    if i != len(datagame[room]['asw']):
-                        datagame[room]['tmp'][i] = str(i+1)+'. '+datagame[room]['asw'][i]+' (1)'+' ['+wnr+']'
-                        datagame[room]['asw'][i] = datagame[room]['asw'][i]+' (*)'
-                    else:
-                        datagame[room]['tmp'].remove(str(datagame[room]['tmp'][i]))
-                        datagame[room]['tmp'].append(str(i+1)+'. '+datagame[room]['asw'][i]+' (1)'+' ['+wnr+']')
-                        datagame[room]['asw'].remove(str(datagame[room]['asw'][i]))
-                        datagame[room]['tmp'].append(datagame[room]['asw'][i]+' (*)')
-                    rsl,rnk = '\n','\n'
-                    for j in datagame[room]['tmp']:
-                        rsl += j+'\n'
-                    for k in datagame[room]['point']:
-                        rnk += '• '+k+' : '+str(datagame[room]['point'][k])+'\n'
-                    if '____________' in str(datagame[room]['tmp']):
-                        isi = str(datagame[room]['quest'])
-                        isi += '\n'+rsl
-                        sendMessage(to, str(isi))
-                    else:
-                        datagame[room]['saklar'] = False
-                        isi2 = str(datagame[room]['quest'])+'\n'+rsl
-                        sendMessage(to, isi2)
-                        teks = '⌬ Papan Skor:\n\n'+rnk
-                        teks += "⌬ Ketik 'Mulai' Untuk Memulai\n⌬ Pertanyaan Baru."
-                        sendMessage(to, str(teks))
-    except:pass
-
-    if VinsenT == '!mid':
-        profile = Xeberlhyn.get_profile(sender)
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama : " + profile.display_name
-        c_ += "\n│⊧≽ Mid : " + sender
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini adalah mid kamu."
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendMessage(to, str(c_))
-
-    elif VinsenT == '!my profile':
-        profile = Xeberlhyn.get_profile(sender)
-        url = profile.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama : " + profile.display_name
-        c_ += "\n│⊧≽ Status : " + str(profile.status_message)
-        c_ += "\n│⊧≽ Mid : " + sender
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini data profile mu"
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT == '!group profile':
-        G = Xeberlhyn.get_group_summary(room)
-        url = G.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama group: {}".format(G.group_name)
-        c_ += "\n│⊧≽ Gid: {}".format(G.group_id)
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini info group."
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT == '!bot':
-        ofice = Xeberlhyn.get_bot_info()
-        url = ofice.picture_url
-        c_ = "╭───「 Costumer service」"
-        c_ += "\n│⊧≽ Nama bot: {}".format(ofice.display_name)
-        c_ += "\n│⊧≽ ID bot: {}".format(ofice.basic_id)
-        c_ += "\n│⊧≽ Mode: {}".format(ofice.chat_mode)
-        c_ += "\n│⊧≽ Mid : {}".format(ofice.user_id)
-        c_ += "\n│╭───「 message」"
-        c_ += "\n││• hello dear, ini info bot."
-        c_ += "\n│╰──────────────"
-        c_ += "\n╰───「 By: ©VinsenTEAM 」"
-        sendTextImageURL(to, str(c_), str(url))
-
-    elif VinsenT.startswith('.\n'):
-        if sender in Creator:
-            try:
-                sep = tks.split('\n')
-                exc = tks.replace(sep[0] + '\n','')
-                if 'print' in exc:
-                    exc = exc.replace('print(','sendMessage(to,')
-                    exec(exc)
-                else:
-                   exec(exc)
-            except Exception as e:
-                sendMessage(to, str(e))
-#__________Bahan Game______________
-    elif VinsenT == "game on":
-        datagame[room]={'point':{}}
-        datagame[room]['saklar']=False
-        datagame[room]['quest']=''
-        datagame[room]['asw']=[]
-        datagame[room]['tmp']=[]
-        teks = "Kuis diaktifkan"
-        sendMessage(to, teks)
-
-    elif VinsenT == "!mulai" or VinsenT == "/mulai" or VinsenT == "mulai":
-        if datagame[room]['saklar'] == False:
-            datagame[room]['saklar'] = True
-            getQuest(room)
-            aa = '\n'
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-            q = datagame[room]['quest']+'\n'+aa
-            teks = q
-            teks += "\n\n⌬ Ketik 'Nyerah' atau 'Next'\n⌬ Jika tidak bisa jawab"
-            sendMessage(to, str(teks))
-        else:
-            aa = '\n'
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-            q = datagame[room]['quest']+'\n'+aa
-            teks1 = q
-            teks1 += "\n\n⌬ Ketik 'Nyerah' atau 'Next'\n⌬ Jika ga bisa jawab"
-            sendMessage(to, str(teks1))
-
-    elif VinsenT == "nyerah" or VinsenT == "/nyerah" or VinsenT == "!nyerah":
-        if datagame[room]['saklar'] == True:
-            rnk,asd = '',''
-            datagame[room]['saklar'] = False
-            for j in range(len(datagame[room]['tmp'])):
-                if '____________' in datagame[room]['tmp'][j]:
-                    if j != len(datagame[room]['tmp']):
-                        datagame[room]['tmp'][j] = str(j+1)+'. '+datagame[room]['asw'][j]+' (*system)'
-                    else:
-                        datagame[room]['tmp'][j].remove(str(datagame[room]['tmp'][j]))
-                        datagame[room]['tmp'][j].append(str(j+1)+'. '+datagame[room]['asw'][j]+' (*system)')
-            for m in datagame[room]['tmp']:
-                asd += m+'\n'
-            for k in datagame[room]['point']:
-                rnk += '• '+k+' : '+str(datagame[room]['point'][k])+'\n'
-            teks1 = str(datagame[room]['quest'])
-            teks1 += '\n\n'+asd
-            teks2 = "╭─「 ©VinsenTEAM」"
-            teks2 += "\n│• Papan poin score"
-            teks2 += "\n╰────────────"
-            teks2 += "\n{}".format(str(rnk))
-            teks2 += "\n\n⌬ Ketik 'Mulai' untuk memulai game baru"
-            txt1 = '{}'.format(str(teks1))
-            txt2 = '{}'.format(str(teks2))
-            sendDowbleMessage(to, txt1, txt2)
-        else:
-            teks5 = "⌬ Ketik 'Mulai' untuk memulai game baru"
-            sendMessage(to, teks5)
-
-    elif VinsenT == "next" or VinsenT == "/next" or VinsenT == "!next":
-        if datagame[room]['saklar'] == True:
-            getQuest(room)
-            aa = ''
-            for aswr in datagame[room]['tmp']:
-                aa += aswr+'\n'
-                q = datagame[room]['quest']
-                q += '\n\n'+aa
-            sendMessage(to, str(q))
-
-    elif VinsenT == "clear" or VinsenT == "/bersihkan" or VinsenT == "reset game":
-        datagame[room]['point'] = {}
-        datagame[room]['saklar'] = False
-        sendMessage(to, "⌬ Game sukses direset ulang")
-
-#__________Bahan Media______________
-
-
-#__________Bahan Media______________
-
+        if VinsenT == 'mid':
+            profile = Xeberlhyn.get_profile(sender)
+            url = profile.picture_url,
+            a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
+            a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(profile.display_name)
+            a_ += "\n⌬ {}".format(str(sender))
+            a_ += "\n\n𝐕 𝐓 ΞΛ𝐌 • 𝐒𝐘𝐒𝐓𝐄𝐌"
+            if vst["template"] == True: sendTextFlexMessage(to, str(a_), url)
+            else: sendMessage(to, str(a_))
+    except Exception as error:
+        sendMessage(to, error)
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
