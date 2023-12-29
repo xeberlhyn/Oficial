@@ -9,7 +9,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from urllib.parse import urlencode
 from datetime import datetime
 import requests as uReq
-import requests, json, errno, os, sys, random, tempfile, datetime, urllib, pytz
+import requests, json, errno, os, sys, random, tempfile, datetime, urllib, pytz, youtube_dl
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom, Joined,
@@ -205,7 +205,7 @@ def handle_message(event):
                   {
                     "type": "span",
                     "text": "Jam {}".format(str(y.strftime("%I:%M:%S %p"))),
-                    "size": "8px",
+                    "size": "9px",
                     "weight": "bold",
                     "color": "#778899cc"
                   }
@@ -217,7 +217,7 @@ def handle_message(event):
                   {
                     "type": "span",
                     "text": "{}".format(str(x.strftime("%A, %d %b %Y"))),
-                    "size": "8px",
+                    "size": "9px",
                     "weight": "bold",
                     "color": "#778899cc"
                   }
@@ -293,6 +293,24 @@ def handle_message(event):
 }
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
  
+     elif VinsenT.startswith("idpornhub"):
+        sep = tks.split(" ")
+        query = tks.replace(sep[0]+" ","")
+        link = "https://www.pornhub.com/embed/{}".format(str(query))
+        sendMessage(to,  "• 𝐏𝐥𝐞𝐚𝐬𝐞 𝐖𝐚𝐢𝐭...!!!\n • 𝑽𝒊𝒅𝒆𝒐 𝒊𝒔 𝒃𝒆𝒊𝒏𝒈 𝒅𝒐𝒘𝒏𝒍𝒐𝒂𝒅𝒆𝒅")
+        ydl = youtube_dl.YoutubeDL({'format': 'best'})
+        with ydl:
+            result = ydl.extract_info(link)
+            try:
+            	if 'entries' in result:
+            	    video = result['entries'][0]
+                else:
+            	    video = result
+                url = "{}".format(video['url'])
+                sendFlexVideoURL(to, url)
+            except Exception as e:
+            	sendMessage(to, "error")
+
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
