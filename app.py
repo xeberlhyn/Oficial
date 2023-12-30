@@ -270,7 +270,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "Byuhh" 
+                        "text": "Byuhh" ,
                         "size": "11px",
                         "color": "#A9A9A9CC"
                       }
