@@ -160,7 +160,7 @@ def handle_message(event):
             except Exception as e:
                 sendMessage(to, str(e))
 
-    elif "https://m.soundcloud.com/" in PeopleBOTS:
+    elif "https://m.soundcloud.com/" in VinsenT:
         sep = tks.split("https://m.soundcloud.com/")
         query = tks.replace(sep[0]+"https://m.soundcloud.com/","")
         eyy = 'https://m.soundcloud.com/{}'.format(query)
