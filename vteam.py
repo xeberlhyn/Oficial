@@ -164,18 +164,19 @@ def handle_message(event):
         sep = tks.split("https://m.soundcloud.com/")
         query = tks.replace(sep[0]+"https://m.soundcloud.com/","")
         eyy = 'https://m.soundcloud.com/{}'.format(query)
-        r = requests.get("https://vihangayt.me/download/soundcloud?url={}".format(str(eyy)))
-        sendAudio(to, r["data"]["link"])
+        r = requests.get("https://vihangayt.me/download/soundcloud?url={}".format(eyy))
+        a = r.json()
+        sendAudio(to, a["data"]["link"])
 
     elif VinsenT.startswith("soundcloud"):
         sep = tks.split(" ")
         search = tks.replace(sep[0]+" ","")
-        r = requests.get("https://vihangayt.me/search/soundcloud?q={}".format(str(search)))
+        r = requests.get("https://myfirstexpress-1.xvdxsix.repl.co/api/search/scsearch?query={}".format(str(search)))
         a = r.json()
-        if a["data"]["result"] != []:
+        if a["result"] != []:
             ret_ = []
             no = 0
-            for bokeps in a["data"]["result"]:
+            for bokeps in a["result"]:
                 no += 1
                 ret_.append({
   "type": "bubble",
@@ -307,7 +308,7 @@ def handle_message(event):
                         "contents": [
                           {
                             "type": "text",
-                            "text": "▶ {}".format(bokeps["timestamp"]),
+                            "text": "▶ {}".format(bokeps["duration"]),
                             "size": "10px",
                             "align": "center",
                             "color": "#000000"
@@ -437,8 +438,6 @@ def handle_message(event):
                 data = { "type": "carousel", "contents": ret_[aa*10: (aa+1)*10] } 
                 time.sleep(4)
                 Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data))
-
-
 
     elif VinsenT.startswith("pornhub"):
         sep = tks.split(" ")
