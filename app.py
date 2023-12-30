@@ -251,7 +251,7 @@ def handle_message(event):
                             "layout": "vertical",
                             "action": {
                               "type": "uri",
-                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["id"]),
+                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
                             }
                           }
                         ],
@@ -270,7 +270,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "Fiwers: {}".format(bokeps["views"]),
+                        "text": "Judul: {}".format(bokeps["title"]),
                         "size": "11px",
                         "color": "#A9A9A9CC"
                       }
@@ -322,7 +322,7 @@ def handle_message(event):
                         "backgroundColor": "#191970",
                         "action": {
                           "type": "uri",
-                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["id"]),
+                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
                         }
                       }
                     ],
@@ -367,7 +367,11 @@ def handle_message(event):
                     "layout": "vertical",
                     "flex": 7,
                     "alignItems": "center",
-                    "justifyContent": "center"
+                    "justifyContent": "center",
+                    "action": {
+                      "type": "uri",
+                      "uri": "https://line.me/ti/p/~xeberlhyn23"
+                    }
                   }
                 ],
                 "type": "box",
