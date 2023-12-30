@@ -372,11 +372,7 @@ def handle_message(event):
                 ],
                 "type": "box",
                 "layout": "horizontal",
-                "spacing": "sm",
-                "action": {
-                  "type": "uri",
-                  "uri": "https://line.me/ti/p/~xeberlhyn23"
-                }
+                "spacing": "sm"
               }
             ],
             "type": "box",
