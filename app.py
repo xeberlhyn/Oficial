@@ -248,11 +248,7 @@ def handle_message(event):
                               }
                             ],
                             "type": "box",
-                            "layout": "vertical",
-                            "action": {
-                              "type": "uri",
-                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
-                            }
+                            "layout": "vertical"
                           }
                         ],
                         "type": "box",
