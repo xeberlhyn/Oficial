@@ -315,7 +315,11 @@ def handle_message(event):
                         "height": "20px",
                         "justifyContent": "center",
                         "alignItems": "center",
-                        "backgroundColor": "#191970"
+                        "backgroundColor": "#191970",
+                        "action": {
+                          "type": "uri",
+                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
+                        }
                       }
                     ],
                     "type": "box",
