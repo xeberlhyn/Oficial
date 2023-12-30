@@ -172,10 +172,10 @@ def handle_message(event):
         search = tks.replace(sep[0]+" ","")
         r = requests.get("https://vihangayt.me/search/soundcloud?q={}".format(str(search)))
         a = r.json()
-        if a["result"] != []:
+        if a["data"]["result"] != []:
             ret_ = []
             no = 0
-            for bokeps in a["result"]:
+            for bokeps in a["data"]["result"]:
                 no += 1
                 ret_.append({
   "type": "bubble",
