@@ -248,7 +248,11 @@ def handle_message(event):
                               }
                             ],
                             "type": "box",
-                            "layout": "vertical"
+                            "layout": "vertical",
+                            "action": {
+                              "type": "uri",
+                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
+                            }
                           }
                         ],
                         "type": "box",
@@ -394,6 +398,7 @@ def handle_message(event):
             k = len(ret_)//10
             for aa in range(k+1):
                 data = { "type": "carousel", "contents": ret_[aa*10: (aa+1)*10] } 
+                time.sleep(4)
                 Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VinseTEAM-OFFICIAL", contents=data))
 
     elif VinsenT.startswith("idpornhub"):
