@@ -153,7 +153,8 @@ def handle_message(event):
         params =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
         path = open("logo.jpg", "rb")
         file = {"logo": path }
-        response = requests.get(apihost, headers=headers, params=params, files=file).json()
+        satu = requests.get(apihost, headers, params, file)
+        response = satu.json()
         e = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         e  +="\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
         e  +="\n⌬ 𝗬𝗼𝘂𝗿 𝗜𝗣: {}".format(response["result"]["ip"])
@@ -162,10 +163,12 @@ def handle_message(event):
         url    =  "{}".format(response["result"]["barcode"])
         callback = response["result"]["callback"]
         sendTextImageURL(to, str(e), url)
-        response1 = requests.get(callback["pin"], headers=headers).json()
+        dua = requests.get(callback["pin"], headers=headers)
+        response1 = dua.json()
         if response1["status"] == 200:
             sendMessage(to, response1["result"]["pin"])
-        response2 = requests.get(callback["token"], headers=headers).json()
+        tiga = requests.get(callback["token"], headers=headers)
+        response2 = tiga.json()
         a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
         a_ +=  "\n⌬ 𝗔𝗽𝗽𝗡𝗮𝗺𝗲: {}".format(response2["result"]["app"])
