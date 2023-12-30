@@ -175,7 +175,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "image",
-                        "url": Xeberlhyn.get_profile(sender).picture_url
+                        "url": Xeberlhyn.get_profile(sender).picture_url,
                         "aspectMode": "cover"
                       }
                     ],
