@@ -159,7 +159,7 @@ def handle_message(event):
                 video = result['entries'][0]
             else:
                 video = result
-            Xeberlhyn.reply_message(to, TextSendMessage(text=video['url']))
+            sendVideo(to, video['url'])
 
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
