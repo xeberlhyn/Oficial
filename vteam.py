@@ -149,22 +149,22 @@ def handle_message(event):
 
     elif VinsenT == 'token':
         apihost = "https://api.imjustgood.com/lineqr"
-        headers  =  { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/51.0.2704.106", "Apikey": "Bebek89", "appName": "DESKTOPWIN\t7.13.2\tWindows\t10.0", "sysName": "VTEAMS", "cert": None }
-        params     =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
-        file    =  {"logo": open("logo.jpg", "rb") }
-        response  =  requests.get(apihost, headers=headers, params=params, files=file).json()
+        headers =  { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/51.0.2704.106", "Apikey": "Bebek89", "appName": "DESKTOPWIN\t7.13.2\tWindows\t10.0", "sysName": "VTEAMS", "cert": None }
+        params =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
+        file =  {"logo": "logo.jpg", "rb"}
+        response = requests.get(apihost, headers=headers, params=params, files=file).json()
         e = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         e  +="\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
         e  +="\n⌬ 𝗬𝗼𝘂𝗿 𝗜𝗣: {}".format(response["result"]["ip"])
         e +=  "\n⌬ 𝗬𝗼𝘂𝗿 𝗹𝗶𝗻𝗸: {}".format(response["result"]["qr"])
         e +=  "\n\n𝐕 𝐓 ΞΛ𝐌 • 𝐒𝐘𝐒𝐓𝐄𝐌"
         url    =  "{}".format(response["result"]["barcode"])
-        callback   =  response["result"]["callback"]
+        callback = response["result"]["callback"]
         sendTextImageURL(to, str(e), url)
-        response1  =  requests.get(callback["pin"], headers=headers).json()
+        response1 = requests.get(callback["pin"], headers=headers).json()
         if response1["status"] == 200:
             sendMessage(to, response1["result"]["pin"])
-        response2   =  requests.get(callback["token"], headers=headers).json()
+        response2 = requests.get(callback["token"], headers=headers).json()
         a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
         a_ +=  "\n⌬ 𝗔𝗽𝗽𝗡𝗮𝗺𝗲: {}".format(response2["result"]["app"])
