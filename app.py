@@ -146,8 +146,6 @@ def handle_message(event):
         data =  { "type": "carousel", "contents": [ { "type": "bubble", "size": "deca", "body": { "type": "box", "layout": "vertical", "contents": [ { "type": "box", "layout": "horizontal", "contents": [ { "type": "box", "layout": "vertical", "contents": [ { "type": "image", "url": url, "aspectMode": "cover", "size": "full" } ], "cornerRadius": "100px", "width": "20px", "height": "20px" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "text", "contents": [], "text": "𝐕𝐓𝐄𝐀𝐌 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | 𝙸 𝚊𝚖 𝚛𝚘𝚋𝚘𝚝 𝚕𝚒𝚗𝚎", "size": "10px", "weight": "bold" } ], "justifyContent": "center", "alignItems": "center" } ], "spacing": "md" }, { "type": "separator", "margin": "xs", "color": "#708090" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "text", "contents": [ { "type": "span", "text": "Jam {}".format(str(y.strftime("%I:%M:%S %p"))), "size": "9px", "weight": "bold", "color": "#778899cc" } ] }, { "type": "text", "contents": [ { "type": "span", "text": "{}".format(str(x.strftime("%A, %d %b %Y"))), "size": "9px", "weight": "bold", "color": "#778899cc" } ], "align": "end" } ] }, { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": str(a_), "wrap": True, "size": "10px" } ] }, { "type": "separator", "color": "#708090" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": "𝐏𝐥𝐞𝐚𝐬𝐞 𝐜𝐥𝐢𝐜𝐤 𝐭𝐨 𝐎𝐰𝐧𝐞𝐫", "size": "10px", "weight": "bold", "decoration": "underline", "color": "#0000FFCC" } ], "justifyContent": "center", "alignItems": "center", "action": { "type": "uri", "uri": "https://line.me/ti/p/~xeberlhyn23" } }, { "type": "box", "layout": "vertical", "contents": [ { "type": "image", "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url, "size": "full", "aspectMode": "cover" } ], "width": "20px", "height": "20px", "borderWidth": "normal", "cornerRadius": "100px" } ], "margin": "sm" } ], "paddingAll": "3px" } } ] }
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
 
-
-
     elif VinsenT.startswith("pornhub"):
         sep = tks.split(" ")
         search = tks.replace(sep[0]+" ","")
@@ -393,8 +391,6 @@ def handle_message(event):
             for aa in range(k+1):
                 data = { "type": "carousel", "contents": ret_[aa*10 : (aa+1)*10] } 
                 Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VinseTEAM-OFFICIAL", contents=data))
-
-
 
 
     elif VinsenT.startswith("idpornhub"):
