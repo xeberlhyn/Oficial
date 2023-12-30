@@ -35,7 +35,7 @@ handler = WebhookHandler('89c44971d85f42f346c60755f3ec7fad')
 Xeberlhyn = line_bot_api
 chanels = Xeberlhyn.get_bot_info()
 BotMID = chanels.user_id
-Creator = 'u7b53d142b0b84803853f8841e48cba82'
+Creator = 'Uab4a2365a6a7a901cb09984f618d36d8'
 notes = {}
 msg_dict = {}
 tym = datetime.datetime.now()
@@ -127,6 +127,7 @@ def handle_follow(event):
 #____________batas dev__________________
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    msg = event.message
     tks = str(event.message.text)
     VinsenT = tks.lower()
     sender = event.source.user_id
@@ -146,8 +147,6 @@ def handle_message(event):
         data =  { "type": "carousel", "contents": [ { "type": "bubble", "size": "deca", "body": { "type": "box", "layout": "vertical", "contents": [ { "type": "box", "layout": "horizontal", "contents": [ { "type": "box", "layout": "vertical", "contents": [ { "type": "image", "url": url, "aspectMode": "cover", "size": "full" } ], "cornerRadius": "100px", "width": "20px", "height": "20px" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "text", "contents": [], "text": "𝐕𝐓𝐄𝐀𝐌 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | 𝙸 𝚊𝚖 𝚛𝚘𝚋𝚘𝚝 𝚕𝚒𝚗𝚎", "size": "10px", "weight": "bold" } ], "justifyContent": "center", "alignItems": "center" } ], "spacing": "md" }, { "type": "separator", "margin": "xs", "color": "#708090" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "text", "contents": [ { "type": "span", "text": "Jam {}".format(str(y.strftime("%I:%M:%S %p"))), "size": "9px", "weight": "bold", "color": "#778899cc" } ] }, { "type": "text", "contents": [ { "type": "span", "text": "{}".format(str(x.strftime("%A, %d %b %Y"))), "size": "9px", "weight": "bold", "color": "#778899cc" } ], "align": "end" } ] }, { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": str(a_), "wrap": True, "size": "10px" } ] }, { "type": "separator", "color": "#708090" }, { "type": "box", "layout": "horizontal", "contents": [ { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": "𝐏𝐥𝐞𝐚𝐬𝐞 𝐜𝐥𝐢𝐜𝐤 𝐭𝐨 𝐎𝐰𝐧𝐞𝐫", "size": "10px", "weight": "bold", "decoration": "underline", "color": "#0000FFCC" } ], "justifyContent": "center", "alignItems": "center", "action": { "type": "uri", "uri": "https://line.me/ti/p/~xeberlhyn23" } }, { "type": "box", "layout": "vertical", "contents": [ { "type": "image", "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url, "size": "full", "aspectMode": "cover" } ], "width": "20px", "height": "20px", "borderWidth": "normal", "cornerRadius": "100px" } ], "margin": "sm" } ], "paddingAll": "3px" } } ] }
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data))
 
-
-
     elif VinsenT.startswith('cek\n'):
         if sender in Creator:
             try:
@@ -161,11 +160,17 @@ def handle_message(event):
             except Exception as e:
                 sendMessage(to, str(e))
 
+    elif "https://m.soundcloud.com/" in PeopleBOTS:
+        sep = tks.split("https://m.soundcloud.com/")
+        query = tks.replace(sep[0]+"https://m.soundcloud.com/","")
+        eyy = 'https://m.soundcloud.com/{}'.format(query)
+        r = requests.get("https://vihangayt.me/download/soundcloud?url={}".format(str(eyy)))
+        sendAudio(to, r["data"]["link"])
 
     elif VinsenT.startswith("soundcloud"):
         sep = tks.split(" ")
         search = tks.replace(sep[0]+" ","")
-        r = requests.get("https://myfirstexpress-1.xvdxsix.repl.co/api/search/scsearch?query={}".format(str(search)))
+        r = requests.get("https://vihangayt.me/search/soundcloud?q={}".format(str(search)))
         a = r.json()
         if a["result"] != []:
             ret_ = []
@@ -302,8 +307,8 @@ def handle_message(event):
                         "contents": [
                           {
                             "type": "text",
-                            "text": "▶ {}".format(bokeps["duration"]),
-                            "size": "13px",
+                            "text": "▶ {}".format(bokeps["timestamp"]),
+                            "size": "10px",
                             "align": "center",
                             "color": "#000000"
                           }
@@ -365,7 +370,7 @@ def handle_message(event):
                   {
                     "contents": [
                       {
-                        "url": "https://i1.sndcdn.com/artworks-GnlX2PX4FxN1-0-t240x240.jpg",
+                        "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url,
                         "size": "full",
                         "type": "image"
                       }
@@ -392,7 +397,7 @@ def handle_message(event):
                     "action": {
                       "type": "uri",
                       "label": "action",
-                      "uri": "http://linecorp.com/"
+                      "uri": "https://line.me/ti/p/~xeberlhyn23"
                     }
                   }
                 ],
