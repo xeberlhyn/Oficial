@@ -148,12 +148,11 @@ def handle_message(event):
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VTEAM-OFFICIAL", contents=data))
 
     elif VinsenT == 'token':
-        apihost = "https://api.imjustgood.com/lineqr"
-        headers =  { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/51.0.2704.106", "Apikey": "Bebek89", "appName": "DESKTOPWIN\t7.13.2\tWindows\t10.0", "sysName": "VTEAMS", "cert": None }
-        params =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
+        seber =  { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/51.0.2704.106", "Apikey": "Bebek89", "appName": "DESKTOPWIN\t7.13.2\tWindows\t10.0", "sysName": "VTEAMS", "cert": None }
+        vincent =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
         path = open("logo.jpg", "rb")
-        file = {"logo": path }
-        satu = requests.get(apihost, headers, params, file)
+        fandy = {"logo": path }
+        satu = requests.get("https://api.imjustgood.com/lineqr", headers= seber, params=vincent, files=fandy)
         response = satu.json()
         e = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         e  +="\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
@@ -163,11 +162,11 @@ def handle_message(event):
         url    =  "{}".format(response["result"]["barcode"])
         callback = response["result"]["callback"]
         sendTextImageURL(to, str(e), url)
-        dua = requests.get(callback["pin"], headers=headers)
+        dua = requests.get(callback["pin"], headers=seber)
         response1 = dua.json()
         if response1["status"] == 200:
             sendMessage(to, response1["result"]["pin"])
-        tiga = requests.get(callback["token"], headers=headers)
+        tiga = requests.get(callback["token"], headers=seber)
         response2 = tiga.json()
         a_ = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         a_ += "\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
