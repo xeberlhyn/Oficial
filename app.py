@@ -360,18 +360,18 @@ def handle_message(event):
                         "type": "text",
                         "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌",
                         "size": "12px",
-                        "color": "#FFF5EE"
+                        "color": "#FFF5EE",
+                        "action": {
+                          "type": "uri",
+                          "uri": "https://line.me/ti/p/~xeberlhyn23"
+                        }
                       }
                     ],
                     "type": "box",
                     "layout": "vertical",
                     "flex": 7,
                     "alignItems": "center",
-                    "justifyContent": "center",
-                    "action": {
-                      "type": "uri",
-                      "uri": "https://line.me/ti/p/~xeberlhyn23"
-                    }
+                    "justifyContent": "center"
                   }
                 ],
                 "type": "box",
