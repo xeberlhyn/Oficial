@@ -248,7 +248,11 @@ def handle_message(event):
                               }
                             ],
                             "type": "box",
-                            "layout": "vertical"
+                            "layout": "vertical",
+                            "action": {
+                              "type": "uri",
+                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["id"]),
+                            }
                           }
                         ],
                         "type": "box",
@@ -266,7 +270,7 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "Viwersnya",
+                        "text": "{}" .format(bokeps["views"]),
                         "size": "11px",
                         "color": "#A9A9A9CC"
                       }
@@ -282,7 +286,7 @@ def handle_message(event):
                         "contents": [
                           {
                             "type": "text",
-                            "text": "Durasi: {}",
+                            "text": "Durasi: {}" .format(bokeps["duration"]),
                             "size": "11px",
                             "align": "center",
                             "color": "#A9A9A9CC"
@@ -315,7 +319,11 @@ def handle_message(event):
                         "height": "20px",
                         "justifyContent": "center",
                         "alignItems": "center",
-                        "backgroundColor": "#191970"
+                        "backgroundColor": "#191970",
+                        "action": {
+                          "type": "uri",
+                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["id"]),
+                        }
                       }
                     ],
                     "type": "box",
@@ -387,9 +395,9 @@ def handle_message(event):
     }
   }
 })
-            k = len(ret_)//10
+            k = len(ret_)//20
             for aa in range(k+1):
-                data = { "type": "carousel", "contents": ret_[aa*10 : (aa+1)*10] } 
+                data = { "type": "carousel", "contents": ret_[aa*20 : (aa+1)*20] } 
                 Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="©VinseTEAM-OFFICIAL", contents=data))
 
 
