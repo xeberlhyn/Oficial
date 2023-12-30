@@ -151,7 +151,8 @@ def handle_message(event):
         apihost = "https://api.imjustgood.com/lineqr"
         headers =  { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/51.0.2704.106", "Apikey": "Bebek89", "appName": "DESKTOPWIN\t7.13.2\tWindows\t10.0", "sysName": "VTEAMS", "cert": None }
         params =  { "style": 2, "size": 500, "border": 164, "background": "#00FFFF", "foreground": "FFD700" }
-        file =  {"logo": "logo.jpg", "rb"}
+        path = open("logo.jpg", "rb")
+        file = {"logo": path }
         response = requests.get(apihost, headers=headers, params=params, files=file).json()
         e = "「 𝗕𝗢𝗧 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡」\n"
         e  +="\n⌬ 𝗡𝗮𝗺𝗲 : "+str(Xeberlhyn.get_profile(sender).display_name)
