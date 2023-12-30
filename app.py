@@ -248,7 +248,11 @@ def handle_message(event):
                               }
                             ],
                             "type": "box",
-                            "layout": "vertical"
+                            "layout": "vertical",
+                            "action": {
+                                "type": "uri",
+                                "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub%20{}".format(bokeps["id"]),
+                              }
                           }
                         ],
                         "type": "box",
@@ -318,7 +322,7 @@ def handle_message(event):
                         "backgroundColor": "#191970",
                         "action": {
                           "type": "uri",
-                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub {}".format(bokeps["id"]),
+                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text=Idpornhub%20{}".format(bokeps["id"]),
                         }
                       }
                     ],
