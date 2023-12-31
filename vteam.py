@@ -166,21 +166,9 @@ def handle_message(event):
         eyy = 'https://m.soundcloud.com/{}'.format(query)
         r = requests.get("https://vihangayt.me/download/soundcloud?url={}".format(eyy))
         a = r.json()
-        sendAudio(to, a["data"]["link"])
-
-    elif VinsenT.startswith("soundcloud"):
-        sep = tks.split(" ")
-        search = tks.replace(sep[0]+" ","")
-        r = requests.get("https://myfirstexpress-1.xvdxsix.repl.co/api/search/scsearch?query={}".format(str(search)))
-        a = r.json()
-        if a["result"] != []:
-            ret_ = []
-            no = 0
-            for bokeps in a["result"]:
-                no += 1
-                ret_.append({
+        data = { "type": "carousel", "contents": [{
   "type": "bubble",
-  "size": "micro",
+  "size": "deca",
   "body": {
     "type": "box",
     "layout": "vertical",
@@ -208,11 +196,30 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗",
-                        "size": "10px",
-                        "color": "#FF6600",
-                        "weight": "bold",
-                        "offsetTop": "2px"
+                        "offsetTop": "2px",
+                        "contents": [
+                          {
+                            "type": "span",
+                            "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗",
+                            "size": "12px",
+                            "weight": "bold",
+                            "color": "#FF6600"
+                          },
+                          {
+                            "type": "span",
+                            "text": " | ",
+                            "size": "13px",
+                            "color": "#000000CC",
+                            "weight": "bold"
+                          },
+                          {
+                            "type": "span",
+                            "text": "𝗠𝗨𝗦𝗜𝗖",
+                            "size": "12px",
+                            "color": "#000000CC",
+                            "weight": "bold"
+                          }
+                        ]
                       }
                     ],
                     "type": "box",
@@ -262,7 +269,7 @@ def handle_message(event):
                             "contents": [
                               {
                                 "type": "image",
-                                "url": "{}" .format(bokeps["thumb"]),
+                                "url": "{}".format(a["data"]["thumb"]),
                                 "size": "full",
                                 "aspectMode": "cover"
                               }
@@ -272,7 +279,7 @@ def handle_message(event):
                             "action": {
                               "type": "uri",
                               "label": "action",
-                              "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["url"])
+                              "uri": "line://app/2001802457-wQ1nlNXP?type=image&img={}".format(a["data"]["thumb"]),
                             }
                           }
                         ],
@@ -291,8 +298,8 @@ def handle_message(event):
                     "contents": [
                       {
                         "type": "text",
-                        "text": "{}" .format(bokeps["title"]),
-                        "size": "11px",
+                        "text": "{}".format(a["data"]["title"]),
+                        "size": "13px",
                         "color": "#000000CC",
                         "weight": "bold"
                       }
@@ -308,15 +315,15 @@ def handle_message(event):
                         "contents": [
                           {
                             "type": "text",
-                            "text": "▶ {}".format(bokeps["duration"]),
-                            "size": "10px",
+                            "text": "▶ {}".format(a["data"]["download_count"]),
+                            "size": "13px",
                             "align": "center",
-                            "color": "#000000"
+                            "color": "#003300CC"
                           }
                         ],
                         "type": "box",
                         "layout": "vertical",
-                        "width": "89px",
+                        "width": "127px",
                         "height": "20px",
                         "alignItems": "flex-start",
                         "justifyContent": "center"
@@ -325,9 +332,9 @@ def handle_message(event):
                         "contents": [
                           {
                             "type": "text",
-                            "text": "𝗦𝗵𝗮𝗿𝗲",
+                            "text": "𝗨𝗻𝗱𝘂𝗵",
                             "size": "11px",
-                            "color": "#FFFFFF",
+                            "color": "#FFFFCC",
                             "align": "center"
                           }
                         ],
@@ -335,7 +342,7 @@ def handle_message(event):
                         "layout": "vertical",
                         "borderWidth": "normal",
                         "cornerRadius": "lg",
-                        "width": "40px",
+                        "width": "60px",
                         "height": "20px",
                         "justifyContent": "center",
                         "alignItems": "center",
@@ -349,7 +356,7 @@ def handle_message(event):
                         "action": {
                           "type": "uri",
                           "label": "action",
-                          "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["url"]),
+                          "uri": "{}".format(a["data"]["link"])
                         }
                       }
                     ],
@@ -373,12 +380,13 @@ def handle_message(event):
                       {
                         "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url,
                         "size": "full",
-                        "type": "image"
+                        "type": "image",
+                        "aspectMode": "cover"
                       }
                     ],
                     "type": "box",
                     "layout": "vertical",
-                    "cornerRadius": "lg",
+                    "cornerRadius": "xxl",
                     "borderWidth": "1px"
                   },
                   {
@@ -432,7 +440,20 @@ def handle_message(event):
       "backgroundColor": "#FFFFF0"
     }
   }
-})
+}]}
+        sendFlexAudioURL(to, data, a["data"]["link"])
+
+    elif VinsenT.startswith("soundcloud"):
+        sep = tks.split(" ")
+        search = tks.replace(sep[0]+" ","")
+        r = requests.get("https://myfirstexpress-1.xvdxsix.repl.co/api/search/scsearch?query={}".format(str(search)))
+        a = r.json()
+        if a["result"] != []:
+            ret_ = []
+            no = 0
+            for bokeps in a["result"]:
+                no += 1
+                ret_.append({ "type": "bubble", "size": "micro", "body": { "type": "box", "layout": "vertical", "contents": [ { "contents": [ { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" }, { "contents": [ { "type": "text", "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗", "size": "10px", "color": "#FF6600", "weight": "bold", "offsetTop": "2px" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "flex": 5, "justifyContent": "center" }, { "contents": [ { "type": "image", "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" } ], "type": "box", "layout": "horizontal", "spacing": "xs" }, { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "size": "full", "offsetTop": "0px", "offsetBottom": "0px", "offsetStart": "0px", "offsetEnd": "0px", "aspectRatio": "1:1", "aspectMode": "cover", "position": "absolute" }, { "contents": [ { "type": "image", "url": "{}" .format(bokeps["thumb"]), "size": "full", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "action": { "type": "uri", "label": "action", "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["url"]) } } ], "type": "box", "layout": "vertical" } ], "type": "box", "layout": "vertical", "flex": 4, "spacing": "none" }, { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": "{}" .format(bokeps["title"]), "size": "11px", "color": "#000000CC", "weight": "bold" } ], "justifyContent": "center", "alignItems": "center", "cornerRadius": "xs", "borderWidth": "normal" }, { "contents": [ { "contents": [ { "type": "text", "text": "▶ {}".format(bokeps["duration"]), "size": "10px", "align": "center", "color": "#003300CC" } ], "type": "box", "layout": "vertical", "width": "89px", "height": "20px", "alignItems": "flex-start", "justifyContent": "center" }, { "contents": [ { "type": "text", "text": "𝗦𝗵𝗮𝗿𝗲", "size": "11px", "color": "#FFFFFF", "align": "center" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "width": "40px", "height": "20px", "justifyContent": "center", "alignItems": "center", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FFFFFF", "endColor": "#FF6600" }, "borderColor": "#FF6600", "action": { "type": "uri", "label": "action", "uri": "line://app/2001802457-wQ1nlNXP?type=text&text={}".format(bokeps["url"]), } } ], "type": "box", "layout": "horizontal", "spacing": "xxl" } ], "type": "box", "layout": "vertical", "spacing": "sm" }, { "type": "separator", "color": "#000000CC" }, { "contents": [ { "contents": [ { "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url, "size": "full", "type": "image" } ], "type": "box", "layout": "vertical", "cornerRadius": "lg", "borderWidth": "1px" }, { "contents": [ { "type": "text", "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌", "size": "12px", "color": "#000000Cc" } ], "type": "box", "layout": "vertical", "flex": 7, "alignItems": "center", "justifyContent": "center", "action": { "type": "uri", "label": "action", "uri": "https://line.me/ti/p/~xeberlhyn23" } } ], "type": "box", "layout": "horizontal", "spacing": "sm" } ], "type": "box", "layout": "vertical", "spacing": "sm" } ], "type": "box", "layout": "vertical" } ], "paddingAll": "3px", "borderWidth": "medium", "cornerRadius": "md", "borderColor": "#FF6600", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FF6600", "endColor": "#FFFFFF" } }, "styles": { "body": { "backgroundColor": "#FFFFF0" } } })
             k = len(ret_)//10
             for aa in range(k+1):
                 data = { "type": "carousel", "contents": ret_[aa*10: (aa+1)*10] } 
