@@ -80,11 +80,11 @@ def sendFlexVideoURL(to, data, url):
 
 def sendFlexAudioURL(to, data, url):
     app.logger.info("url=" + url)
-    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data), VideoSendMessage(url, 60000)])
+    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data), AudioSendMessage(url, 60000)])
 
 def sendFlexImageURL(to, data, url):
     app.logger.info("url=" + url)
-    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data), VideoSendMessage(url, url)])
+    return Xeberlhyn.reply_message(to, [FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data), ImageSendMessage(url, url)])
 
 def sendDowbleMessage(to, txt1, txt2):
     return Xeberlhyn.reply_message(to, [TextSendMessage(text=txt1), TextSendMessage(text=txt2)])
