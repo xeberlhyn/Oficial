@@ -42,7 +42,6 @@ tym = datetime.datetime.now()
 vst = {
     "template": True,
 }
-
 #____________dev_________________
 def sendMessage(to, teks):
     return Xeberlhyn.reply_message(to, TextSendMessage(text=teks))
@@ -160,287 +159,33 @@ def handle_message(event):
             except Exception as e:
                 sendMessage(to, str(e))
 
+    elif "https://vt.tiktok.com/" in VinsenT:
+        sep = tks.split("https://vt.tiktok.com/")
+        query = tks.replace(sep[0]+"https://vt.tiktok.com/","")
+        eyy = 'https://vt.tiktok.com/{}'.format(query)
+        r = requests.get("https://vihangayt.me/download/tiktok?url={}".format(eyy))
+        b= r.json()
+        data = { "type": "carousel", "contents": [{ "type": "bubble", "size": "deca", "body": { "type": "box", "layout": "vertical", "contents": [ { "contents": [ { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/ZfKvrY6/20240101-161124.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" }, { "contents": [ { "type": "text", "offsetTop": "2px", "contents": [ { "type": "span", "text": "𝗧𝗜𝗞 - 𝗧𝗢𝗞", "size": "12px", "weight": "bold", "color": "#000000" }, { "type": "span", "text": " | ", "size": "13px", "color": "#000000CC", "weight": "bold" }, { "type": "span", "text": "𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗", "size": "12px", "color": "#FF0000CC", "weight": "bold" } ] } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "flex": 5, "justifyContent": "center" }, { "contents": [ { "type": "image", "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" } ], "type": "box", "layout": "horizontal", "spacing": "xs" }, { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/ZfKvrY6/20240101-161124.png", "size": "full", "offsetTop": "0px", "offsetBottom": "0px", "offsetStart": "0px", "offsetEnd": "0px", "aspectRatio": "1:1", "aspectMode": "cover", "position": "absolute" }, { "contents": [ { "type": "image", "url": "{}".format(b["data"]["cover"]), "size": "full", "aspectMode": "cover" } ], "type": "box", "layout": "vertical" } ], "type": "box", "layout": "vertical" } ], "type": "box", "layout": "vertical", "flex": 4, "spacing": "none" }, { "contents": [ { "contents": [ { "type": "text", "text": "▶ {}".format(b["data"]["author"]), "size": "13px", "align": "center", "color": "#FFFFFFCC" } ], "type": "box", "layout": "vertical", "alignItems": "flex-start", "justifyContent": "center" } ], "type": "box", "layout": "horizontal" } ], "type": "box", "layout": "vertical", "spacing": "sm" }, { "type": "separator", "color": "#FFFFFFCC" }, { "contents": [ { "contents": [ { "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url "size": "full", "type": "image", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "cornerRadius": "xxl", "borderWidth": "1px" }, { "contents": [ { "type": "text", "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌", "size": "12px", "color": "#FFFFFFCC" } ], "type": "box", "layout": "vertical", "flex": 7, "alignItems": "center", "justifyContent": "center", "action": { "type": "uri", "label": "action", "uri": "https://line.me/ti/p/~xeberlhyn23" } } ], "type": "box", "layout": "horizontal", "spacing": "sm" } ], "type": "box", "layout": "vertical", "spacing": "sm" } ], "type": "box", "layout": "vertical" } ], "paddingAll": "3px", "borderWidth": "medium", "cornerRadius": "md", "borderColor": "#000000", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#000000", "endColor": "#FFFFFF" } }, "styles": { "body": { "backgroundColor": "#FFFFF0" } } }]}
+        for nam in range(1) : 
+           a = str(r["data"]["links"][nam]["a"])
+        sendFlexVideoURL(to, data,  a)
+
+    elif "https://youtu.be/" in VinsenT:
+        sep = tks.split("https://youtu.be/")
+        query = tks.replace(sep[0]+"https://youtu.be/","")
+        eyy = 'https://youtu.be/{}'.format(query)
+        r = requests.get("https://vihangayt.me/download/ytmp4?url={}".format(eyy))
+        b= r.json()
+        data = { "type": "carousel", "contents": [{"type": "bubble", "size": "deca", "body": { "type": "box", "layout": "vertical", "contents": [ { "contents": [ { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" }, { "contents": [ { "type": "text", "offsetTop": "2px", "contents": [ { "type": "span", "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗", "size": "12px", "weight": "bold", "color": "#FF6600" }, { "type": "span", "text": " | ", "size": "13px", "color": "#000000CC", "weight": "bold" }, { "type": "span", "text": "𝗠𝗨𝗦𝗜𝗖", "size": "12px", "color": "#000000CC", "weight": "bold" } ] } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "flex": 5, "justifyContent": "center" }, { "contents": [ { "type": "image", "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" } ], "type": "box", "layout": "horizontal", "spacing": "xs" }, { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "size": "full", "offsetTop": "0px", "offsetBottom": "0px", "offsetStart": "0px", "offsetEnd": "0px", "aspectRatio": "1:1", "aspectMode": "cover", "position": "absolute" }, { "contents": [ { "type": "image", "url": "{}".format(a["data"]["thumb"]), "size": "full", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "action": { "type": "uri", "label": "action", "uri": "line://app/2001802457-wQ1nlNXP?type=image&img={}".format(a["data"]["thumb"]), } } ], "type": "box", "layout": "vertical" } ], "type": "box", "layout": "vertical", "flex": 4, "spacing": "none" }, { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": "{}".format(a["data"]["title"]), "size": "13px", "color": "#000000CC", "weight": "bold" } ], "justifyContent": "center", "alignItems": "center", "cornerRadius": "xs", "borderWidth": "normal" }, { "contents": [ { "contents": [ { "type": "text", "text": "▶ {}".format(a["data"]["download_count"]), "size": "13px", "align": "center", "color": "#003300CC" } ], "type": "box", "layout": "vertical", "width": "127px", "height": "20px", "alignItems": "flex-start", "justifyContent": "center" }, { "contents": [ { "type": "text", "text": "𝗨𝗻𝗱𝘂𝗵", "size": "11px", "color": "#FFFFCC", "align": "center" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "width": "60px", "height": "20px", "justifyContent": "center", "alignItems": "center", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FFFFFF", "endColor": "#FF6600" }, "borderColor": "#FF6600", "action": { "type": "uri", "label": "action", "uri": "{}".format(a["data"]["link"]) } } ], "type": "box", "layout": "horizontal", "spacing": "xxl" } ], "type": "box", "layout": "vertical", "spacing": "sm" }, { "type": "separator", "color": "#000000CC" }, { "contents": [ { "contents": [ { "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url, "size": "full", "type": "image", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "cornerRadius": "xxl", "borderWidth": "1px" }, { "contents": [ { "type": "text", "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌", "size": "12px", "color": "#000000Cc" } ], "type": "box", "layout": "vertical", "flex": 7, "alignItems": "center", "justifyContent": "center", "action": { "type": "uri", "label": "action", "uri": "https://line.me/ti/p/~xeberlhyn23" } } ], "type": "box", "layout": "horizontal", "spacing": "sm" } ], "type": "box", "layout": "vertical", "spacing": "sm" } ], "type": "box", "layout": "vertical" } ], "paddingAll": "3px", "borderWidth": "medium", "cornerRadius": "md", "borderColor": "#FF6600", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FF6600", "endColor": "#FFFFFF" } }, "styles": { "body": { "backgroundColor": "#FFFFF0" } } }]}
+        sendFlexVideoURL(to, data, b["data"]["vid_360p"])
+
     elif "https://m.soundcloud.com/" in VinsenT:
         sep = tks.split("https://m.soundcloud.com/")
         query = tks.replace(sep[0]+"https://m.soundcloud.com/","")
         eyy = 'https://m.soundcloud.com/{}'.format(query)
         r = requests.get("https://vihangayt.me/download/soundcloud?url={}".format(eyy))
         a = r.json()
-        data = { "type": "carousel", "contents": [{
-  "type": "bubble",
-  "size": "deca",
-  "body": {
-    "type": "box",
-    "layout": "vertical",
-    "contents": [
-      {
-        "contents": [
-          {
-            "contents": [
-              {
-                "contents": [
-                  {
-                    "contents": [
-                      {
-                        "type": "image",
-                        "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png",
-                        "aspectMode": "cover"
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "borderWidth": "normal",
-                    "cornerRadius": "xxl"
-                  },
-                  {
-                    "contents": [
-                      {
-                        "type": "text",
-                        "offsetTop": "2px",
-                        "contents": [
-                          {
-                            "type": "span",
-                            "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗",
-                            "size": "12px",
-                            "weight": "bold",
-                            "color": "#FF6600"
-                          },
-                          {
-                            "type": "span",
-                            "text": " | ",
-                            "size": "13px",
-                            "color": "#000000CC",
-                            "weight": "bold"
-                          },
-                          {
-                            "type": "span",
-                            "text": "𝗠𝗨𝗦𝗜𝗖",
-                            "size": "12px",
-                            "color": "#000000CC",
-                            "weight": "bold"
-                          }
-                        ]
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "borderWidth": "normal",
-                    "cornerRadius": "lg",
-                    "flex": 5,
-                    "justifyContent": "center"
-                  },
-                  {
-                    "contents": [
-                      {
-                        "type": "image",
-                        "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png",
-                        "aspectMode": "cover"
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "borderWidth": "normal",
-                    "cornerRadius": "xxl"
-                  }
-                ],
-                "type": "box",
-                "layout": "horizontal",
-                "spacing": "xs"
-              },
-              {
-                "contents": [
-                  {
-                    "contents": [
-                      {
-                        "contents": [
-                          {
-                            "type": "image",
-                            "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png",
-                            "size": "full",
-                            "offsetTop": "0px",
-                            "offsetBottom": "0px",
-                            "offsetStart": "0px",
-                            "offsetEnd": "0px",
-                            "aspectRatio": "1:1",
-                            "aspectMode": "cover",
-                            "position": "absolute"
-                          },
-                          {
-                            "contents": [
-                              {
-                                "type": "image",
-                                "url": "{}".format(a["data"]["thumb"]),
-                                "size": "full",
-                                "aspectMode": "cover"
-                              }
-                            ],
-                            "type": "box",
-                            "layout": "vertical",
-                            "action": {
-                              "type": "uri",
-                              "label": "action",
-                              "uri": "line://app/2001802457-wQ1nlNXP?type=image&img={}".format(a["data"]["thumb"]),
-                            }
-                          }
-                        ],
-                        "type": "box",
-                        "layout": "vertical"
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "flex": 4,
-                    "spacing": "none"
-                  },
-                  {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "{}".format(a["data"]["title"]),
-                        "size": "13px",
-                        "color": "#000000CC",
-                        "weight": "bold"
-                      }
-                    ],
-                    "justifyContent": "center",
-                    "alignItems": "center",
-                    "cornerRadius": "xs",
-                    "borderWidth": "normal"
-                  },
-                  {
-                    "contents": [
-                      {
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "▶ {}".format(a["data"]["download_count"]),
-                            "size": "13px",
-                            "align": "center",
-                            "color": "#003300CC"
-                          }
-                        ],
-                        "type": "box",
-                        "layout": "vertical",
-                        "width": "127px",
-                        "height": "20px",
-                        "alignItems": "flex-start",
-                        "justifyContent": "center"
-                      },
-                      {
-                        "contents": [
-                          {
-                            "type": "text",
-                            "text": "𝗨𝗻𝗱𝘂𝗵",
-                            "size": "11px",
-                            "color": "#FFFFCC",
-                            "align": "center"
-                          }
-                        ],
-                        "type": "box",
-                        "layout": "vertical",
-                        "borderWidth": "normal",
-                        "cornerRadius": "lg",
-                        "width": "60px",
-                        "height": "20px",
-                        "justifyContent": "center",
-                        "alignItems": "center",
-                        "background": {
-                          "type": "linearGradient",
-                          "angle": "0deg",
-                          "startColor": "#FFFFFF",
-                          "endColor": "#FF6600"
-                        },
-                        "borderColor": "#FF6600",
-                        "action": {
-                          "type": "uri",
-                          "label": "action",
-                          "uri": "{}".format(a["data"]["link"])
-                        }
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "horizontal",
-                    "spacing": "xxl"
-                  }
-                ],
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm"
-              },
-              {
-                "type": "separator",
-                "color": "#000000CC"
-              },
-              {
-                "contents": [
-                  {
-                    "contents": [
-                      {
-                        "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url,
-                        "size": "full",
-                        "type": "image",
-                        "aspectMode": "cover"
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "cornerRadius": "xxl",
-                    "borderWidth": "1px"
-                  },
-                  {
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌",
-                        "size": "12px",
-                        "color": "#000000Cc"
-                      }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "flex": 7,
-                    "alignItems": "center",
-                    "justifyContent": "center",
-                    "action": {
-                      "type": "uri",
-                      "label": "action",
-                      "uri": "https://line.me/ti/p/~xeberlhyn23"
-                    }
-                  }
-                ],
-                "type": "box",
-                "layout": "horizontal",
-                "spacing": "sm"
-              }
-            ],
-            "type": "box",
-            "layout": "vertical",
-            "spacing": "sm"
-          }
-        ],
-        "type": "box",
-        "layout": "vertical"
-      }
-    ],
-    "paddingAll": "3px",
-    "borderWidth": "medium",
-    "cornerRadius": "md",
-    "borderColor": "#FF6600",
-    "background": {
-      "type": "linearGradient",
-      "angle": "0deg",
-      "startColor": "#FF6600",
-      "endColor": "#FFFFFF"
-    }
-  },
-  "styles": {
-    "body": {
-      "backgroundColor": "#FFFFF0"
-    }
-  }
-}]}
+        data = { "type": "carousel", "contents": [{"type": "bubble", "size": "deca", "body": { "type": "box", "layout": "vertical", "contents": [ { "contents": [ { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" }, { "contents": [ { "type": "text", "offsetTop": "2px", "contents": [ { "type": "span", "text": "𝗦𝗢𝗨𝗡𝗗𝗖𝗟𝗢𝗨𝗗", "size": "12px", "weight": "bold", "color": "#FF6600" }, { "type": "span", "text": " | ", "size": "13px", "color": "#000000CC", "weight": "bold" }, { "type": "span", "text": "𝗠𝗨𝗦𝗜𝗖", "size": "12px", "color": "#000000CC", "weight": "bold" } ] } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "flex": 5, "justifyContent": "center" }, { "contents": [ { "type": "image", "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "xxl" } ], "type": "box", "layout": "horizontal", "spacing": "xs" }, { "contents": [ { "contents": [ { "contents": [ { "type": "image", "url": "https://i.ibb.co/vVjDq5g/20231230-195145.png", "size": "full", "offsetTop": "0px", "offsetBottom": "0px", "offsetStart": "0px", "offsetEnd": "0px", "aspectRatio": "1:1", "aspectMode": "cover", "position": "absolute" }, { "contents": [ { "type": "image", "url": "{}".format(a["data"]["thumb"]), "size": "full", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "action": { "type": "uri", "label": "action", "uri": "line://app/2001802457-wQ1nlNXP?type=image&img={}".format(a["data"]["thumb"]), } } ], "type": "box", "layout": "vertical" } ], "type": "box", "layout": "vertical", "flex": 4, "spacing": "none" }, { "type": "box", "layout": "vertical", "contents": [ { "type": "text", "text": "{}".format(a["data"]["title"]), "size": "13px", "color": "#000000CC", "weight": "bold" } ], "justifyContent": "center", "alignItems": "center", "cornerRadius": "xs", "borderWidth": "normal" }, { "contents": [ { "contents": [ { "type": "text", "text": "▶ {}".format(a["data"]["download_count"]), "size": "13px", "align": "center", "color": "#003300CC" } ], "type": "box", "layout": "vertical", "width": "127px", "height": "20px", "alignItems": "flex-start", "justifyContent": "center" }, { "contents": [ { "type": "text", "text": "𝗨𝗻𝗱𝘂𝗵", "size": "11px", "color": "#FFFFCC", "align": "center" } ], "type": "box", "layout": "vertical", "borderWidth": "normal", "cornerRadius": "lg", "width": "60px", "height": "20px", "justifyContent": "center", "alignItems": "center", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FFFFFF", "endColor": "#FF6600" }, "borderColor": "#FF6600", "action": { "type": "uri", "label": "action", "uri": "{}".format(a["data"]["link"]) } } ], "type": "box", "layout": "horizontal", "spacing": "xxl" } ], "type": "box", "layout": "vertical", "spacing": "sm" }, { "type": "separator", "color": "#000000CC" }, { "contents": [ { "contents": [ { "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url, "size": "full", "type": "image", "aspectMode": "cover" } ], "type": "box", "layout": "vertical", "cornerRadius": "xxl", "borderWidth": "1px" }, { "contents": [ { "type": "text", "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌", "size": "12px", "color": "#000000Cc" } ], "type": "box", "layout": "vertical", "flex": 7, "alignItems": "center", "justifyContent": "center", "action": { "type": "uri", "label": "action", "uri": "https://line.me/ti/p/~xeberlhyn23" } } ], "type": "box", "layout": "horizontal", "spacing": "sm" } ], "type": "box", "layout": "vertical", "spacing": "sm" } ], "type": "box", "layout": "vertical" } ], "paddingAll": "3px", "borderWidth": "medium", "cornerRadius": "md", "borderColor": "#FF6600", "background": { "type": "linearGradient", "angle": "0deg", "startColor": "#FF6600", "endColor": "#FFFFFF" } }, "styles": { "body": { "backgroundColor": "#FFFFF0" } } }]}
         sendFlexAudioURL(to, data, a["data"]["link"])
 
     elif VinsenT.startswith("soundcloud"):
