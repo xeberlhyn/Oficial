@@ -834,7 +834,6 @@ def handle_message(event):
   }
 }]}
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data))
-
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
