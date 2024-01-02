@@ -242,8 +242,8 @@ def handle_message(event):
     elif VinsenT.startswith("github"):
         sep = tks.split(" ")
         query = tks.replace(sep[0]+" ","")
-        a = requests.get("https://api.github.com/users/{}".format(str(query))
-        c = requests.get("https://api.github.com/users/{}/repos".format(str(query))
+        a = requests.get("https://api.github.com/users/{}".format(str(query)))
+        c = requests.get("https://api.github.com/users/{}/repos".format(str(query)))
         b = {"result": a.json()}
         d = {"result": c.json()}
         data = { "type": "carousel", "contents": [{
@@ -834,6 +834,7 @@ def handle_message(event):
   }
 }]}
         Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data))
+
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
