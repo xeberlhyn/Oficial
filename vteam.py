@@ -419,7 +419,7 @@ def handle_message(event):
                     ],
                     "alignItems": "center",
                     "justifyContent": "center",
-                    "height": "10px"
+                    "height": "14px"
                   },
                   {
                     "type": "separator",
