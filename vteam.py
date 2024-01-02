@@ -238,6 +238,605 @@ def handle_message(event):
                 video = result
             sendVideo(to, video['url'])
 
+
+    elif VinsenT.startswith("github"):
+        sep = tks.split(" ")
+        query = tks.replace(sep[0]+" ","")
+        a = requests.get("https://api.github.com/users/{}".format(str(query))
+        c = requests.get("https://api.github.com/users/{}/repos".format(str(query))
+        b = {"result": a.json()}
+        d = {"result": c.json()}
+        data = { "type": "carousel", "contents": [{
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "contents": [
+          {
+            "contents": [
+              {
+                "contents": [
+                  {
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": "https://i.ibb.co/6PRGcxx/20240102-092351.png",
+                        "aspectMode": "cover"
+                      }
+                    ],
+                    "type": "box",
+                    "layout": "vertical",
+                    "borderWidth": "normal",
+                    "cornerRadius": "xxl"
+                  },
+                  {
+                    "contents": [
+                      {
+                        "type": "text",
+                        "offsetTop": "2px",
+                        "contents": [
+                          {
+                            "type": "span",
+                            "text": "𝗚𝗜𝗛𝗨𝗕",
+                            "size": "12px",
+                            "weight": "bold",
+                            "color": "#000000"
+                          },
+                          {
+                            "type": "span",
+                            "text": " | ",
+                            "size": "13px",
+                            "color": "#000000CC",
+                            "weight": "bold"
+                          },
+                          {
+                            "type": "span",
+                            "text": "𝗣𝗥𝗢𝗙𝗜𝗟𝗘",
+                            "size": "12px",
+                            "color": "#000000CC",
+                            "weight": "bold"
+                          }
+                        ]
+                      }
+                    ],
+                    "type": "box",
+                    "layout": "vertical",
+                    "borderWidth": "normal",
+                    "cornerRadius": "lg",
+                    "flex": 5,
+                    "justifyContent": "center"
+                  },
+                  {
+                    "contents": [
+                      {
+                        "type": "image",
+                        "url": "https://i.ibb.co/Cb26CJh/20231230-195929.png",
+                        "aspectMode": "cover"
+                      }
+                    ],
+                    "type": "box",
+                    "layout": "vertical",
+                    "borderWidth": "normal",
+                    "cornerRadius": "xxl"
+                  }
+                ],
+                "type": "box",
+                "layout": "horizontal",
+                "spacing": "xs"
+              },
+              {
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Overview",
+                            "size": "12px",
+                            "align": "center",
+                            "weight": "bold",
+                            "decoration": "underline"
+                          }
+                        ],
+                        "flex": 3
+                      },
+                      {
+                        "type": "separator",
+                        "color": "#000000CC"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Repositories {}".format(b["result"]["public_repos"]),
+                            "size": "12px",
+                            "align": "center"
+                          }
+                        ],
+                        "flex": 4
+                      },
+                      {
+                        "type": "separator",
+                        "color": "#000000CC"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Projects",
+                            "size": "12px",
+                            "align": "center"
+                          }
+                        ],
+                        "flex": 3
+                      },
+                      {
+                        "type": "separator",
+                        "color": "#000000CC"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Packages",
+                            "size": "12px",
+                            "align": "center"
+                          }
+                        ],
+                        "flex": 4
+                      },
+                      {
+                        "type": "separator",
+                        "color": "#000000CC"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "text",
+                            "text": "Stars",
+                            "size": "12px",
+                            "align": "center"
+                          }
+                        ],
+                        "flex": 2
+                      }
+                    ],
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "height": "10px"
+                  },
+                  {
+                    "type": "separator",
+                    "color": "#000000CC"
+                  },
+                  {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "image",
+                                "url": "{}".format(b["result"]["avatar_url"]),
+                                "size": "full",
+                                "aspectMode": "cover"
+                              }
+                            ],
+                            "cornerRadius": "100px",
+                            "borderWidth": "normal",
+                            "width": "90px",
+                            "height": "90px"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "text": "{}".format(b["result"]["name"]),
+                                    "size": "14px",
+                                    "weight": "bold"
+                                  }
+                                ],
+                                "height": "18px"
+                              },
+                              {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "text": "{}".format(b["result"]["login"]),
+                                    "size": "10px"
+                                  }
+                                ]
+                              }
+                            ],
+                            "alignItems": "flex-start",
+                            "justifyContent": "center",
+                            "margin": "sm"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "text",
+                                "text": "{}".format(b["result"]["bio"]),
+                                "size": "11px",
+                                "wrap": True,
+                                "maxLines": 2
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "text": "Edit Profile",
+                                    "size": "13px"
+                                  }
+                                ],
+                                "borderColor": "#000000CC",
+                                "cornerRadius": "sm",
+                                "borderWidth": "light",
+                                "height": "20px",
+                                "width": "85px",
+                                "backgroundColor": "#A6A6A6CC",
+                                "justifyContent": "center",
+                                "alignItems": "center"
+                              }
+                            ],
+                            "justifyContent": "center",
+                            "alignItems": "center"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "contents": [
+                                      {
+                                        "type": "span",
+                                        "text": "Followers {}".format(b["result"]["followers"]),
+                                        "size": "9px"
+                                      },
+                                      {
+                                        "type": "span",
+                                        "text": " • ",
+                                        "size": "9px"
+                                      },
+                                      {
+                                        "type": "span",
+                                        "text": "Following {}".format(b["result"]["following"]),
+                                        "size": "9px"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "justifyContent": "center"
+                              }
+                            ],
+                            "height": "16px",
+                            "justifyContent": "center",
+                            "alignItems": "center"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                  {
+                                    "type": "text",
+                                    "text": "Popular repositories",
+                                    "size": "13px",
+                                    "weight": "bold"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "image",
+                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                        "aspectMode": "cover",
+                                        "aspectRatio": "1:1"
+                                      }
+                                    ],
+                                    "alignItems": "flex-start",
+                                    "width": "30px",
+                                    "height": "30px",
+                                    "cornerRadius": "md",
+                                    "borderWidth": "normal"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][0]["name"]),
+                                        "size": "11px",
+                                        "color": "#4169E1",
+                                        "weight": "bold",
+                                        "align": "start"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][0]["description"]),
+                                        "size": "9px",
+                                        "align": "start"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "spacing": "md"
+                              }
+                            ],
+                            "height": "40px",
+                            "borderColor": "#000000CC",
+                            "cornerRadius": "xs",
+                            "borderWidth": "light",
+                            "justifyContent": "center",
+                            "margin": "lg"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "image",
+                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                        "aspectMode": "cover",
+                                        "aspectRatio": "1:1"
+                                      }
+                                    ],
+                                    "alignItems": "flex-start",
+                                    "width": "30px",
+                                    "height": "30px",
+                                    "cornerRadius": "md",
+                                    "borderWidth": "normal"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][1]["name"]),
+                                        "size": "11px",
+                                        "align": "start",
+                                        "weight": "bold",
+                                        "color": "#4169E1"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][1]["description"]),
+                                        "size": "9px",
+                                        "align": "start"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "spacing": "md"
+                              }
+                            ],
+                            "height": "40px",
+                            "justifyContent": "center",
+                            "borderColor": "#000000",
+                            "cornerRadius": "xs",
+                            "borderWidth": "light",
+                            "margin": "md"
+                          },
+                          {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                              {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "image",
+                                        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+                                        "aspectMode": "cover",
+                                        "aspectRatio": "1:1"
+                                      }
+                                    ],
+                                    "alignItems": "flex-start",
+                                    "width": "30px",
+                                    "height": "30px",
+                                    "cornerRadius": "md",
+                                    "borderWidth": "normal"
+                                  },
+                                  {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][2]["name"]),
+                                        "color": "#4169E1",
+                                        "weight": "bold",
+                                        "size": "11px",
+                                        "align": "start"
+                                      },
+                                      {
+                                        "type": "text",
+                                        "text": "{}".format(d["result"][2]["description"]),
+                                        "size": "9px",
+                                        "align": "start"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "spacing": "md"
+                              }
+                            ],
+                            "height": "40px",
+                            "justifyContent": "center",
+                            "cornerRadius": "xs",
+                            "borderWidth": "light",
+                            "borderColor": "#000000CC",
+                            "margin": "md"
+                          }
+                        ],
+                        "flex": 2,
+                        "margin": "sm"
+                      }
+                    ]
+                  }
+                ],
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm"
+              },
+              {
+                "type": "separator",
+                "color": "#000000CC"
+              },
+              {
+                "contents": [
+                  {
+                    "contents": [
+                      {
+                        "url": Xeberlhyn.get_profile("Uab4a2365a6a7a901cb09984f618d36d8").picture_url,
+                        "size": "full",
+                        "type": "image",
+                        "aspectMode": "cover"
+                      }
+                    ],
+                    "type": "box",
+                    "layout": "vertical",
+                    "cornerRadius": "xxl",
+                    "borderWidth": "1px"
+                  },
+                  {
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "𝐕𝐓𝐄𝐀𝐌 𝐒𝐘𝐒𝐓𝐄𝐌",
+                        "size": "12px",
+                        "color": "#000000Cc"
+                      }
+                    ],
+                    "type": "box",
+                    "layout": "vertical",
+                    "flex": 7,
+                    "alignItems": "center",
+                    "justifyContent": "center",
+                    "action": {
+                      "type": "uri",
+                      "label": "action",
+                      "uri": "https://line.me/ti/p/~xeberlhyn23"
+                    }
+                  }
+                ],
+                "type": "box",
+                "layout": "horizontal",
+                "spacing": "sm"
+              }
+            ],
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm"
+          }
+        ],
+        "type": "box",
+        "layout": "vertical"
+      }
+    ],
+    "paddingAll": "3px",
+    "borderWidth": "medium",
+    "cornerRadius": "xl",
+    "borderColor": "#000000",
+    "background": {
+      "type": "linearGradient",
+      "angle": "0deg",
+      "startColor": "#AFEEEE",
+      "endColor": "#FFFFFF"
+    }
+  },
+  "styles": {
+    "body": {
+      "backgroundColor": "#FFFFF0"
+    }
+  }
+}]}
+        Xeberlhyn.reply_message(to, FlexSendMessage(alt_text="𝐕 𝐓 ΞΛ𝐌 • 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋", contents=data))
+
+                
+
 #______________________________________________________________________
 @app.route("/callback", methods=['POST'])
 def callback():
